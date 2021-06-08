@@ -1,54 +1,32 @@
-from random import randint
-from art import logo
+#The game 
+import random
+from typing import List
 
-EASY_LEVEL_TURNS = 10
-HARD_LEVEL_TURNS = 5
+INT_RAN = random.randint(1, 20)
+print(INT_RAN)
+print('Try to guess the number between 1 and 20.')
+jj = input('Do you want to play on "easy" or "hard" level?\n').lower()
+att = 0
+if jj == 'hard' :
+    att = 5
+else :
+    att = 10
+print(att)
 
-#Function to check user's guess against actual answer.
-def check_answer(guess, answer, turns):
-  """checks answer against guess. Returns the number of turns remaining."""
-  if guess > answer:
-    print("Too high.")
-    return turns - 1
-  elif guess < answer:
-    print("Too low.")
-    return turns - 1
-  else:
-    print(f"You got it! The answer was {answer}.")
-
-#Make function to set difficulty.
-def set_difficulty():
-  level = input("Choose a difficulty. Type 'easy' or 'hard': ")
-  if level == "easy":
-    return EASY_LEVEL_TURNS
-  else:
-    return HARD_LEVEL_TURNS
-
-def game():
-  print(logo)
-  #Choosing a random number between 1 and 100.
-  print("Welcome to the Number Guessing Game!")
-  print("I'm thinking of a number between 1 and 100.")
-  answer = randint(1, 100)
-  print(f"Pssst, the correct answer is {answer}") 
-
-  turns = set_difficulty()
-  #Repeat the guessing functionality if they get it wrong.
-  guess = 0
-  while guess != answer:
-    print(f"You have {turns} attempts remaining to guess the number.")
-
-    #Let the user guess a number.
-    guess = int(input("Make a guess: "))
-
-    #Track the number of turns and reduce by 1 if they get it wrong.
-    turns = check_answer(guess, answer, turns)
-    if turns == 0:
-      print("You've run out of guesses, you lose.")
-      return
-    elif guess != answer:
-      print("Guess again.")
-
-
-game()
-
+contador = 0
+while contador < att : 
+    user = int(input('What´s your number: '))
+    if user == INT_RAN :
+        print(f'You win, the number guessed is {INT_RAN}')
+        contador = contador =+ 1
+        break
+    if user < INT_RAN :
+        print('Low')
+        contador = contador =+ 1
+    if user > INT_RAN :
+        print('High')
+        contador = contador =+ 1
+if user == INT_RAN :
+    print(f'You won!')
+if user != INT_RAN :
+    print(f'Your lose, the guessed number was {INT_RAN}')
